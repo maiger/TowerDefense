@@ -2,6 +2,9 @@
 
 public class CameraController : MonoBehaviour {
 
+    // TODO: Improve camera controls
+    // https://forum.unity3d.com/threads/rts-camera-script.72045/
+
     private bool doMovement = true;
 
     public float panSpeed = 30f;
