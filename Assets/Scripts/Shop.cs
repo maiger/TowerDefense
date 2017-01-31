@@ -15,9 +15,9 @@ public class Shop : MonoBehaviour {
         buildManager.SetTurretToBuild(buildManager.standardTurretPrefab);
     }
 
-    public void PurchaseAnotherTurret()
+    public void PurchaseMissileLauncher()
     {
-        Debug.Log("another turret selected");
-        buildManager.SetTurretToBuild(buildManager.anotherTurretPrefab);
+        Debug.Log("Missile launcher selected");
+        buildManager.SetTurretToBuild(buildManager.missieLauncherPrefab);
     }
 }
