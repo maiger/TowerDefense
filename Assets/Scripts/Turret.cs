@@ -19,6 +19,8 @@ public class Turret : MonoBehaviour {
     [Header("Use Laser")]
     public bool useLaser = false;
     public LineRenderer lineRenderer;
+    public ParticleSystem impactEffect;
+    public Light impactLight;
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -65,8 +67,12 @@ public class Turret : MonoBehaviour {
         {
             if(useLaser)
             {
-                if(lineRenderer.enabled)
+                if (lineRenderer.enabled)
+                {
                     lineRenderer.enabled = false;
+                    impactEffect.Stop();
+                    impactLight.enabled = false;
+                }
             }
             return;
         }
@@ -99,10 +105,25 @@ public class Turret : MonoBehaviour {
     void Laser()
     {
         if (lineRenderer.enabled == false)
+        {
             lineRenderer.enabled = true;
+            impactEffect.Play();
+            impactLight.enabled = true;
+        }
 
         lineRenderer.SetPosition(0, firePoint.position);
         lineRenderer.SetPosition(1, target.position);
+
+        Vector3 dir = firePoint.position - target.position;
+
+        // Impact effect is offset one unit away from center to get it closer to the target edge.
+        // FIX: If target radius is much larger/smaller than this, effect will look weird.
+        // Find the correct position for effect placement on any object. Could use raycasting
+        // to measure distance from firePoint to target skin and compare this to distance from
+        // firePoint to target center.
+        impactEffect.transform.position = target.position + dir.normalized;
+
+        impactEffect.transform.rotation = Quaternion.LookRotation(dir);
     }
 
     void Shoot()
