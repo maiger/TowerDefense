@@ -5,7 +5,7 @@ public class CameraController : MonoBehaviour {
     // TODO: Improve camera controls
     // https://forum.unity3d.com/threads/rts-camera-script.72045/
 
-    private bool doMovement = true;
+    //private bool doMovement = true;
 
     public float panSpeed = 30f;
     public float panBorderThickness = 10f;
@@ -24,11 +24,11 @@ public class CameraController : MonoBehaviour {
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            doMovement = !doMovement;
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //    doMovement = !doMovement;
 
-        if (!doMovement)
-            return;
+        //if (!doMovement)
+        //    return;
 
 		if(Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
         {
