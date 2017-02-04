@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour {
     // for every enemy and move the element position based on enemy location.
     public Image healthBar;
 
-
     void Start()
     {
         speed = startSpeed;
@@ -51,6 +50,8 @@ public class Enemy : MonoBehaviour {
 
         GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 5f);
+
+        WaveSpawner.EnemiesAlive--;
 
         Destroy(gameObject);
     }
