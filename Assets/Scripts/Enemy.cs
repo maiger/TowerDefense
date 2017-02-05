@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour {
     // for every enemy and move the element position based on enemy location.
     public Image healthBar;
 
+    private bool isDead = false;
+
     void Start()
     {
         speed = startSpeed;
@@ -33,7 +35,7 @@ public class Enemy : MonoBehaviour {
 
         healthBar.fillAmount = health / startHealth;
 
-        if(health <= 0)
+        if(health <= 0 && isDead == false)
         {
             Die();
         }
@@ -46,6 +48,8 @@ public class Enemy : MonoBehaviour {
 
     void Die()
     {
+        isDead = true;
+
         PlayerStats.Money += worth;
 
         GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
